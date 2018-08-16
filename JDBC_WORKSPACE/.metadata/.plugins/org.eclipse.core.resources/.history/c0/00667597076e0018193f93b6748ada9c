@@ -1,0 +1,41 @@
+package com.ibm;
+
+import java.sql.Statement;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+public class SelectTestDRL 
+{
+
+	public static void main(String[] args) throws ClassNotFoundException, SQLException
+	{
+		//loading driver class
+	
+		Class.forName("oracle.jdbc.driver.OracleDriver");
+		
+		//create the connection
+		
+		Connection conn=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "Abu", "qwerty12345");
+	
+		//create the statement
+		
+		Statement st=conn.createStatement();
+		
+		//execute query
+		
+		ResultSet rs=st.executeQuery("select * from ibm");
+		while(rs.next())
+		{
+			//System.out.println(rs.getInt(1));
+			System.out.println(rs.getString(2));
+		}
+		
+		//close the connection
+		
+		conn.close();
+		
+	}
+
+}
